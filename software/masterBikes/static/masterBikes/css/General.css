@@ -1,0 +1,201 @@
+@font-face {
+    font-family: 'valorant font';
+    src: url('../font/ValorantFont.ttf');
+}
+@font-face{
+    font-family: 'ff mark';
+    src: url('../font/FontFont_FF.Mark.Pro.otf');
+}
+
+@font-face{
+    font-family: 'fuentebici';
+    src: url('../font/UrbanJungleDEMO.otf');
+}
+
+body, html {
+    height: 100%;
+}
+.bg{
+    /* The image used */
+    background-image: url("../img/fondo.jpg");
+    /* Full height */
+    height: 100%;
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+
+
+.card1 {  
+    background-color: dark;
+    text-align: start;
+    font-size: 10px;
+    border-color: danger;
+    margin-left: auto;
+    margin-right: auto;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+#carta {
+    width: 200px;
+    height: 200px;
+    border: 1px solid #c3c3c3;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+#carta div {
+    width: 50px;
+    height: 50px;
+}
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    transition: 0.3s;
+}
+#titulo{
+    font-family: "fuentebici";
+}
+a,h6,h5,h3,h1,h2,label,button,p{
+    font-family: "ff mark";
+}
+div.sticky {
+    position: -webkit-sticky;
+    position: sticky;
+}
+iframe{
+    border-radius: 5px;
+}
+.avatar{
+    width: 50px;
+    height: 50px;
+}
+.icono{
+    width: 30px;
+    height: 30px;
+}
+.fotoCarousel{
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+#dropdown-menu-avatar{
+    width: 400px;
+}
+@media only screen and (max-width: 576px) {
+    #dropdown-menu-avatar{
+        width: 200px;
+    }
+}
+.dropdown-menu.mapa{
+    width: 400px;
+    height: auto;
+}
+.Ascent{
+    background-image: url(../img/Mapas/ascent.jpeg);
+    background-size: cover;
+    background-position: center center;
+}
+.Bind{
+    background-image: url(../img/Mapas/bind.jpeg);
+    background-size: cover;
+    background-position: center center;
+}
+.Breeze{
+    background-image: url(../img/Mapas/breeze.jpeg);
+    background-size: cover;
+    background-position: center center;
+}
+.Haven{
+    background-image: url(../img/Mapas/haven.jpeg);
+    background-size: cover;
+    background-position: center center;
+}
+.Icebox{
+    background-image: url(../img/Mapas/icebox.jpeg);
+    background-size: cover;
+    background-position: center center;
+}
+.Split{
+    background-image: url(../img/Mapas/split.jpeg);
+    background-size: cover;
+    background-position: center center;
+}
+.Fracture{
+    background-image: url(../img/Mapas/fracture.jpeg);
+    background-size: cover;
+    background-position: center center;
+}
+
+.campo{
+    background-image: url(../img/Mapas/campo.jpeg);
+    background-size: cover;
+    background-position: center center;
+}
+
+#perfil-img {
+    width: 200px;
+    height: 200px;
+    border-radius: 1000px;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 8px solid RGB(25, 135, 84);
+    box-shadow: 0 0 20px #09090933;
+}
+#perfil-img:hover {
+    width: 250px;
+    height: 250px;
+    border: 8px solid rgb(0, 250, 8);
+    box-shadow: 0 0 20px rgb(2, 255, 74);
+}
+
+#social{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 40px;
+    width: 40px;
+    background-color: RGB(25, 135, 84);
+    color: #ffffff;
+    font-size: 20px;
+    border-radius: 100%;
+    text-decoration: none;
+    margin: 0 13px 30px 0;
+    box-shadow: 0 0 20px #09090933;
+}
+#social:hover {
+    background-color: rgb(0, 250, 8);
+    height: 50px;
+    width: 50px;
+    text-decoration: none;
+    box-shadow: 0 0 20px rgb(2, 255, 74);
+}
+#container0 {
+
+    background-color: RGB(25, 135, 84);
+
+    font-size: 20px;
+    border-radius: 15px;
+}
+
+#container1 {
+    font-family: 'ff mark';
+    background-color: #1111118a;
+
+    font-size: 20px;
+    border-radius: 15px;
+}
+#container1:hover {
+    background-color: #11111181;
+    font-size: 20px;
+    border-radius: 15px;
+}

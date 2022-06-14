@@ -1,0 +1,26 @@
+{% extends 'masterBikes/p_home.html' %}
+{% load static %}
+
+    
+
+    <div class="container bg-dark">
+        {% block titulo %}
+        <title>Inicio sesion</title>
+        {% endblock titulo %}
+        
+        {% block content %}
+        <form method="POST" class="text-white">
+        {% csrf_token %}
+        
+        {{ form.as_p }}
+    
+        <button type="submit" class="btn btn-success">Iniciar sesion</button>
+        </form>
+        {% endblock content %}
+        
+        {% block script %}
+        <script src="{% static 'masterBikes/js/Validacion-ini.js' %}"></script>
+        {% endblock script %}
+
+
+    </div>
