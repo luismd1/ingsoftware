@@ -1,0 +1,21 @@
+{% extends 'masterBikes/p_home.html' %}
+    
+    {% load static %}
+    
+    {% block content %}
+    <div class="row mt-3">
+        <div class="col-4">
+            <img src="{{ bici.imagen.url }}" alt="FotoBici">
+        </div>
+        <div class="col-4">
+            <h1 class="text-white">{{ bici.nombre }}</h1>
+            <p class="text-white">Descripcion: {{ bici.descripcion }}</p>
+            <p class="text-white">Marca: {{ bici.marca }}</p>
+            <p class="text-white">Modelo: {{ bici.modelo }}</p>
+            <p class="text-white">Stock: {{ bici.cantidad }}</p>
+            <p class="text-white">${{ bici.precio }}</p>
+
+            <button class="btn btn-success">Rentar</button>
+        </div>
+    </div>
+    {% endblock content %}

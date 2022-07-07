@@ -4,6 +4,7 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.models import User
+from .models import Bici
 
 
 
@@ -60,4 +61,36 @@ class EditUserForm(UserCreationForm):
                 'class': 'form-control bg-dark text-dark',
                 'placeholder': 'Nombre de usuario',
                 'id': 'reg-usu'}),
+        }
+
+class subirbici(forms.ModelForm):
+    class Meta:
+        model = Bici
+
+        fields = ['nombre', 'marca', 'modelo', 'color', 'precio', 'cantidad', 'descripcion', 'imagen']
+        widgets = {
+            'nombre' : forms.TextInput(attrs={
+                'class' : 'form-control'
+            }),
+            'marca' : forms.TextInput(attrs={
+                'class' : 'form-control'
+            }),
+            'modelo' : forms.TextInput(attrs={
+                'class' : 'form-control'
+            }),
+            'color' : forms.TextInput(attrs={
+                'class' : 'form-control'
+            }),
+            'precio' : forms.NumberInput(attrs={
+                'class' : 'form-control'
+            }),
+            'cantidad' : forms.NumberInput(attrs={
+                'class' : 'form-control'
+            }),
+            'descripcion' : forms.TextInput(attrs={
+                'class' : 'form-control'
+            }),
+            'imagen' : forms.FileInput(attrs={
+                'class' : 'form-control'
+            }),
         }

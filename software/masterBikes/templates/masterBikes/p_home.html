@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="{% static 'masterBikes/css/General.css' %}">
 </head>
 <body class="bg">
+    <div class="container-fluid bg-dark">
     <nav class="navbar navbar-expand-lg navbar-success bg-success ">
         <div class="container-fluid  d-flex justify-content-center">
 
@@ -29,6 +30,11 @@
                 <li class="nav-item ">
                     <a class="nav-link active text-dark "  aria-current="page" href="{% url 'home' %}">Inicio</a>
                 </li>
+                {% if request.user.is_staff %}
+                <li class="nav-item">
+                    <a class="nav-link text-dark" href="{% url 'formbici' %}">Subir bici</a>
+                </li>
+                {% endif %}
                 </ul>
                 
             </div>
@@ -72,5 +78,7 @@
 
     {% block script %}
     {% endblock script %}
+
+</div>
 </body>
 </html>

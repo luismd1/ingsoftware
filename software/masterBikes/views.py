@@ -1,7 +1,9 @@
 from email import message
 from django.shortcuts import  render, redirect
 from django.contrib import messages
-from .forms import UserForm,LoginForm, EditUserForm
+
+from masterBikes.models import Bici
+from .forms import UserForm,LoginForm, EditUserForm, subirbici
 from django.contrib.auth.models import User
 from django.contrib.auth.views import LoginView
 from django.http import HttpResponseRedirect
@@ -10,7 +12,9 @@ from django.views.generic.base import View
 
 
 def home(request):
-    return render(request,'masterBikes/home.html')
+    lista = Bici.objects.all()
+    data = {'lista':lista}
+    return render(request,'masterBikes/home.html', data)
 
 def perfil(request):
     return render(request,'masterBikes/perfil.html')
@@ -58,3 +62,22 @@ class CustomLoginView(LoginView):
     template_name = 'masterBikes/InicioSesion.html'
     form_class = LoginForm
 # Create your views here.
+
+def formbici(request):
+    form = subirbici()
+    data = {'form':form}
+    if request.method == 'POST':
+        form = subirbici(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Bicicleta subida con exito')
+            return redirect(to="home")
+        else:
+            messages.error(request, 'Error al subir la bicicleta')
+            return redirect(to="formbici")
+    return render(request,'masterBikes/subirbici.html', data)
+
+def bici(request, id):
+    bici = Bici.objects.get(pk=id)
+    data = {'bici':bici}
+    return render(request,'masterBikes/bici.html', data)
