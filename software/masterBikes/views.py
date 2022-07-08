@@ -84,9 +84,11 @@ def rentar(request):
     bici = Bici.objects.get(pk=ide)
     fecha_ini = request.POST.get('datefield')
     fecha_fin = request.POST.get('datefield2')
+    fecha_ini2 = datetime.datetime.strptime(fecha_ini, '%Y-%m-%d').date()
+    fecha_fin2 = datetime.datetime.strptime(fecha_fin, '%Y-%m-%d').date()
     pago = request.POST.get('metodo')
     cantidad2 = request.POST.get('cantidad')
     precio2 = bici.precio * cantidad2
 
-    Venta.objects.create(idBici=bici, cliente = request.user, fecha = fecha_ini, fechaTermino = fecha_fin, formadepago = pago, cantidad = cantidad2, precio = precio2)    
+    Venta.objects.create(idBici=bici, cliente = request.user, fecha = fecha_ini2, fechaTermino = fecha_fin2, formadepago = pago, cantidad = cantidad2, precio = precio2)    
     return redirect(to="home")

@@ -20,9 +20,9 @@ class Bici(models.Model):
 class Venta(models.Model):
     idVenta = models.AutoField(primary_key = True, verbose_name = "Id de la venta")
     idBici = models.ForeignKey(Bici, on_delete = models.CASCADE, verbose_name = "Id de la bici")
-    cliente = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name = "cliente")
-    fecha = models.CharField(max_length=50,verbose_name = "Fecha de la venta")
-    fechaTermino = models.CharField(max_length=50,verbose_name = "Fecha de termino de la venta")
+    cliente = UserForeignKey(auto_user_add=True, verbose_name = "cliente")
+    fecha = models.DateField(verbose_name = "Fecha de la venta")
+    fechaTermino = models.DateField(verbose_name = "Fecha de termino de la venta")
     formadepago = models.CharField(max_length = 50, verbose_name = "Forma de pago", choices = pagos)
     cantidad = models.IntegerField(verbose_name = "Cantidad de bicis")
     precio = models.IntegerField(verbose_name = "Precio de la venta")
