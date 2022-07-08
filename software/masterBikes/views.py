@@ -1,8 +1,9 @@
+import datetime
 from email import message
 from django.shortcuts import  render, redirect
 from django.contrib import messages
 
-from masterBikes.models import Bici
+from masterBikes.models import Bici, Venta
 from .forms import UserForm,LoginForm, EditUserForm, subirbici
 from django.contrib.auth.models import User
 from django.contrib.auth.views import LoginView
@@ -18,10 +19,6 @@ def home(request):
 
 def perfil(request):
     return render(request,'masterBikes/perfil.html')
-
-
-
-
 
 def InicioSesion(request):
     return render(request,'masterBikes/InicioSesion.html')
@@ -81,3 +78,15 @@ def bici(request, id):
     bici = Bici.objects.get(pk=id)
     data = {'bici':bici}
     return render(request,'masterBikes/bici.html', data)
+
+def rentar(request):
+    ide = request.POST.get('idBici')
+    bici = Bici.objects.get(pk=ide)
+    fecha_ini = request.POST.get('datefield')
+    fecha_fin = request.POST.get('datefield2')
+    pago = request.POST.get('metodo')
+    cantidad2 = request.POST.get('cantidad')
+    precio2 = bici.precio * cantidad2
+
+    Venta.objects.create(idBici=bici, cliente = request.user, fecha = fecha_ini, fechaTermino = fecha_fin, formadepago = pago, cantidad = cantidad2, precio = precio2)    
+    return redirect(to="home")
