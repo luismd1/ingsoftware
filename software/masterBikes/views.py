@@ -1,8 +1,9 @@
+import datetime
 from email import message
 from django.shortcuts import  render, redirect
 from django.contrib import messages
 
-from masterBikes.models import Bici
+from masterBikes.models import Bici, Reparacion, Venta
 from .forms import UserForm,LoginForm, EditUserForm, subirbici
 from django.contrib.auth.models import User
 from django.contrib.auth.views import LoginView
@@ -18,10 +19,6 @@ def home(request):
 
 def perfil(request):
     return render(request,'masterBikes/perfil.html')
-
-
-
-
 
 def InicioSesion(request):
     return render(request,'masterBikes/InicioSesion.html')
@@ -81,3 +78,43 @@ def bici(request, id):
     bici = Bici.objects.get(pk=id)
     data = {'bici':bici}
     return render(request,'masterBikes/bici.html', data)
+
+def rentar(request):
+    ide = request.POST.get('idBici')
+    bici = Bici.objects.get(pk=ide)
+    fecha_ini = request.POST.get('datefield')
+    fecha_fin = request.POST.get('datefield2')
+    fecha_ini2 = datetime.datetime.strptime(fecha_ini, '%Y-%m-%d').date()
+    fecha_fin2 = datetime.datetime.strptime(fecha_fin, '%Y-%m-%d').date()
+    pago = request.POST.get('metodo')
+    cantidad2 = request.POST.get('cantidad')
+    precio2 = int(bici.precio) * int(cantidad2)
+    venta = Venta(idBici=bici, cliente = request.user, fecha = fecha_ini2, fechaTermino = fecha_fin2, formadepago = pago, cantidad = cantidad2, precio = precio2)    
+    venta.save()
+    messages.success(request, 'Bici rentada con exito')
+    return redirect("home")
+
+def historial(request):
+    lista = Venta.objects.filter(cliente=request.user.id)
+    data = {'lista':lista}
+    return render(request,'masterBikes/historial.html', data)
+
+def historial2(request):
+    lista = Reparacion.objects.filter(cliente=request.user.id)
+    data = {'lista':lista}
+    return render(request,'masterBikes/historial2.html', data)
+
+def cancelar(request, id):
+    venta = Venta.objects.get(pk=id)
+    venta.delete()
+    messages.success(request, 'Bici cancelada con exito')
+    return redirect("historial")
+
+def reparar(request, id):
+    bici = Venta.objects.get(pk=id)
+    bici = bici.idBici
+    precio = int(bici.precio) * 0.20
+    r =  Reparacion(idBici=bici, cliente = request.user, estado="REPARACION PENDIENTE", precio = precio)
+    r.save()
+    messages.success(request, 'Peticion de reparacion enviada con exito')
+    return redirect("historial")

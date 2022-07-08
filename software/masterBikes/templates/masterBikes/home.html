@@ -2,21 +2,25 @@
 {% load static %}
 
     {% block content %}
-    {% for i in lista %}
-    <div class="col-md-3 col-12 main_card" style="margin-top: 25px;">
-        <div class="card border-danger bg-dark text-white">
-        <div class="card-header">
-            <h5 class="card-title">{{ i.nombre }}</h5>
-        </div>
-            <img src="{{ i.imagen.url }}" alt="">
-        <div class="card-body">
-            <p class="card-text">{{ i.descripcion }}</p>
-            <p class="card-text">${{ i.precio }}</p>
-            <a href="{% url 'bici' i.idBici %}" class="btn btn-danger">Ver producto</a>
+    <div class="row carta">
+        
+        {% for i in lista %}
+         <div class="col-md-3 col-12 main_card" style="margin-top: 25px;">
+            <div class="card border-success bg-dark text-white">
+            <div class="card-header">
+                <h5 class="card-title">{{ i.nombre }}</h5>
+            </div>
+                <img src="{{ i.imagen.url }}" width="300" height="260" alt="">
+            <div class="card-body">
+                <p class="card-text">{{ i.descripcion }}</p>
+                <p class="card-text">${{ i.precio }}</p>
+                <a href="{% url 'bici' i.idBici %}" class="btn btn-success">Ver producto</a>
+                </div>
             </div>
         </div>
+        {% endfor %}
+           
     </div>
-    {% endfor %}
     {% endblock content %}
 
 

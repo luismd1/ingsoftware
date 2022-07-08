@@ -1,0 +1,42 @@
+{% extends 'masterBikes/p_home.html' %}
+    
+    {% load static %}
+
+{% block content %}
+
+<div class="card bg-dark ">
+    <br><br>
+    <div class="card-body bg-dark ">
+        <div class="container text-white bg-success">Historial de arriendos</div>
+        
+        <table class=" table table-stripped table-hover table-responsive-sm">
+
+            <tr>
+                <th class="text-white">Bicis</th>
+                <th class="text-white">Marca</th>
+                <th class="text-white">Fecha</th>
+                <th class="text-white">Estado</th>
+                <th class="text-white">Precio</th>
+                <th class="text-white">Cancelar</th>
+            </tr>
+    
+            
+            {% for v in lista %}
+            <tr>
+                <td class="text-white">{{ v.idBici.nombre }}</iframe></td>
+                <td class="text-white">{{ v.idBici.marca }}</td>
+                <td class="text-white">{{ v.fecha }}</td>
+                <td class="text-white">{{ v.estado }}</td>
+                <td class="text-white">{{ v.precio }}</td>
+                <td ><a href="{% url 'cancelar' v.idReparacion %}" class="btn bg-danger text-white btn-sm ">Cancelar</a></td>
+            </tr>
+            
+            {% endfor %}
+        </table>
+
+    </div>
+</div>
+
+
+
+{% endblock %}
