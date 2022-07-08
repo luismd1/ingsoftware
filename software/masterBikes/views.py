@@ -88,7 +88,14 @@ def rentar(request):
     fecha_fin2 = datetime.datetime.strptime(fecha_fin, '%Y-%m-%d').date()
     pago = request.POST.get('metodo')
     cantidad2 = request.POST.get('cantidad')
-    precio2 = bici.precio * cantidad2
+    precio2 = int(bici.precio) * int(cantidad2)
+    venta = Venta(idBici=bici, cliente = request.user, fecha = fecha_ini2, fechaTermino = fecha_fin2, formadepago = pago, cantidad = cantidad2, precio = precio2)    
+    if venta.is_valid():
+        venta.save()
+        messages.success(request, 'Bici rentada con exito')
+    return redirect("home")
 
-    Venta.objects.create(idBici=bici, cliente = request.user, fecha = fecha_ini2, fechaTermino = fecha_fin2, formadepago = pago, cantidad = cantidad2, precio = precio2)    
-    return redirect(to="home")
+def historial(request):
+    lista = Venta.objects.filter(cliente=request.user)
+    data = {'lista':lista}
+    return render(request,'masterBikes/historial.html', data)

@@ -32,7 +32,7 @@
             
                         <!-- Cuerpo del modal -->
                         <div class="modal-body">
-                            <form action="{% url 'rentar' %}" method="POST">
+                            <form action="{% url 'rentar' %}" method="POST" enctype="multipart/form-data">
                                 {% csrf_token %}
                                 <div>
                                     <input id="idBici" name="idBici" type="hidden" value="{{ bici.idBici }}">
